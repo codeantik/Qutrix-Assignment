@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/home';
+// import Form from './components/form';
+import About from './components/about';
+import Nav from './components/nav';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const deployedLink = 'https://admitkard-assignment-codeantik.vercel.app';
+const localLink = 'http://localhost:5000';
+
+export const config = {
+    baseUrl: deployedLink
+}
+
+const App = () => {
+    return (
+        <div>
+            <Nav />
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                {/* <Route exact path="/form" element={<Form />} /> */}
+                <Route exact path="/about" element={<About />} />
+                <Route path="*" element={<h1>Not Found</h1>} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
